@@ -1,3 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
 .app-container {
   display: flex;
 }
@@ -7,6 +13,7 @@
   background-color: #f4f4f4;
   padding: 10px;
 }
+
 
 .editor {
   width: 60%;

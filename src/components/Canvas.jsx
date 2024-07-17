@@ -16,12 +16,18 @@ import GridComponent from './GridComponent';
 import SocialMediaComponent from './SocialMediaComponent';
 import SEOSettings from './SEOSettings';  // Importing the SEO component
 import './styles.css';
+import CustomFileInput from './InputFile'; // Importing the custom file input component
+import { MdOutlineSaveAlt } from "react-icons/md";
+import { TiExport } from "react-icons/ti";
+
+
 
 const CanvasContainer = styled.div`
   flex: 1;
-  padding: 20px;
-  background: #fafafa;
-  min-height: 100vh;
+  background:white ; 
+  height: 100vh; /* Adjust height dynamically based on content */
+  overflow-y:scroll;  
+  overflow-x:hidden;
 `;
 
 const Canvas = ({ components, setComponents }) => {
@@ -114,10 +120,21 @@ const Canvas = ({ components, setComponents }) => {
   };
 
   return (
-    <CanvasContainer ref={drop}>
-      <button onClick={saveComponents}>Save Design</button>
-      <button onClick={exportComponents}>Export Design</button>
-      <input type="file" accept=".json" onChange={importComponents} style={{ marginLeft: '10px' }} />
+    <>
+      <CanvasContainer ref={drop}>
+      <div className=" w-full flex flex-row-reverse bg items-center justify-start">
+
+        <button onClick={saveComponents} className="bg-black text-white flex items-center">
+          <MdOutlineSaveAlt className="mx-1" />
+          <span>Save Design</span>
+        </button>
+        <button onClick={exportComponents} className="bg-black text-white flex items-center">
+          <TiExport className="mx-1" />
+          <span>Export Design</span>
+        </button>
+        <CustomFileInput onFileChange={importComponents} />
+      </div>
+      
       {/* SEO Settings Component */}
       <SEOSettings seoData={seoData} setSeoData={setSeoData} />
       {components.map((component, index) => {
@@ -149,7 +166,9 @@ const Canvas = ({ components, setComponents }) => {
         }
       })}
     </CanvasContainer>
-  );
+  {/* ); */}
+    </>
+  )
 };
 
 export default Canvas;
